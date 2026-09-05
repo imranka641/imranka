@@ -189,56 +189,75 @@ export const ChatBot: React.FC<ChatBotProps> = ({ onOpenCV }) => {
     ]);
   };
 
-  // Helper to format text with bold, markdown links and code tags
+  // Helper to format text with bold markdown, links, and bullets
   const renderFormattedText = (text: string) => {
     const lines = text.split('\n');
     return lines.map((line, idx) => {
-      // Process markdown links [label](url)
-      const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+      // Empty line spacing
+      if (!line.trim()) {
+        return <div key={idx} className="h-1.5" />;
+      }
+
+      const isBullet = line.trim().startsWith('- ') || line.trim().startsWith('* ');
+      const cleanLine = isBullet ? line.trim().replace(/^[-*]\s+/, '') : line;
+
+      // Tokenize by links [label](url) and bold **bold**
+      const tokenRegex = /(\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|\*\*([^*]+)\*\*)/g;
       const parts: React.ReactNode[] = [];
       let lastIndex = 0;
       let match;
 
-      while ((match = linkRegex.exec(line)) !== null) {
+      while ((match = tokenRegex.exec(cleanLine)) !== null) {
         if (match.index > lastIndex) {
-          parts.push(line.substring(lastIndex, match.index));
+          parts.push(cleanLine.substring(lastIndex, match.index));
         }
-        parts.push(
-          <a
-            key={match[2] + match.index}
-            href={match[2]}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400 font-semibold underline underline-offset-2 hover:opacity-80"
-          >
-            <span>{match[1]}</span>
-            <ExternalLink className="w-2.5 h-2.5 inline shrink-0" />
-          </a>
-        );
+
+        if (match[2] && match[3]) {
+          // Link match
+          parts.push(
+            <a
+              key={`link-${idx}-${match.index}`}
+              href={match[3]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400 font-semibold underline underline-offset-2 hover:opacity-80"
+            >
+              <span>{match[2]}</span>
+              <ExternalLink className="w-2.5 h-2.5 inline shrink-0" />
+            </a>
+          );
+        } else if (match[4]) {
+          // Bold match
+          parts.push(
+            <strong key={`bold-${idx}-${match.index}`} className="font-semibold text-neutral-900 dark:text-neutral-100">
+              {match[4]}
+            </strong>
+          );
+        }
+
         lastIndex = match.index + match[0].length;
       }
-      if (lastIndex < line.length) {
-        parts.push(line.substring(lastIndex));
+
+      if (lastIndex < cleanLine.length) {
+        parts.push(cleanLine.substring(lastIndex));
       }
 
-      const content = parts.length > 0 ? parts : line;
+      const content = parts.length > 0 ? parts : cleanLine;
 
-      // Handle bullet points
-      if (line.trim().startsWith('- ') || line.trim().startsWith('* ')) {
+      if (isBullet) {
         return (
-          <div key={idx} className="flex items-start gap-1.5 my-1">
+          <div key={idx} className="flex items-start gap-1.5 my-1 text-xs sm:text-sm">
             <span className="text-emerald-500 font-bold shrink-0 mt-0.5">•</span>
             <span className="flex-1">{content}</span>
           </div>
         );
       }
 
-      // Empty line spacing
-      if (!line.trim()) {
-        return <div key={idx} className="h-2" />;
-      }
-
-      return <p key={idx} className="my-1 leading-relaxed">{content}</p>;
+      return (
+        <p key={idx} className="my-1 leading-relaxed text-xs sm:text-sm">
+          {content}
+        </p>
+      );
     });
   };
 

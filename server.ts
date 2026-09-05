@@ -70,7 +70,8 @@ app.post('/api/chat', async (req, res) => {
       contents,
       config: {
         systemInstruction: SYSTEM_PROMPT,
-        temperature: 0.65,
+        temperature: 0.3,
+        maxOutputTokens: 650,
       }
     });
 
