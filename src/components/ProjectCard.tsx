@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { 
   ExternalLink, 
   ArrowUpRight, 
   Sparkles, 
   Check, 
-  Layers, 
   Eye,
-  Tag
+  Camera,
+  Code2
 } from 'lucide-react';
 import { Project } from '../types';
 import { ProjectMockup } from './ProjectMockup';
@@ -18,6 +18,12 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
+  const [viewMode, setViewMode] = useState<'photo' | 'mockup'>('photo');
+
+  const toggleViewMode = () => {
+    setViewMode((prev) => (prev === 'photo' ? 'mockup' : 'photo'));
+  };
+
   return (
     <motion.div
       layout
@@ -27,21 +33,25 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }
       transition={{ duration: 0.4 }}
       className="group rounded-2xl bg-neutral-900/40 dark:bg-neutral-900/60 light:bg-white border border-neutral-800/80 dark:border-neutral-800 light:border-neutral-200/90 hover:border-neutral-700 dark:hover:border-neutral-700 hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
     >
-      {/* Top Preview Area */}
+      {/* Top Preview Area with Realistic Photo & UI Mockup Switcher */}
       <div 
         onClick={() => onOpenModal(project)}
-        className="relative h-52 sm:h-56 w-full overflow-hidden cursor-pointer border-b border-neutral-800/80 dark:border-neutral-800 light:border-neutral-200"
+        className="relative h-56 sm:h-60 w-full overflow-hidden cursor-pointer border-b border-neutral-800/80 dark:border-neutral-800 light:border-neutral-200"
       >
-        <ProjectMockup project={project} />
+        <ProjectMockup 
+          project={project} 
+          viewMode={viewMode}
+          onToggleViewMode={toggleViewMode}
+        />
 
-        {/* Hover Overlay Button */}
-        <div className="absolute inset-0 bg-neutral-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 backdrop-blur-[2px]">
+        {/* Hover Action Overlay */}
+        <div className="absolute inset-0 bg-neutral-950/65 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2.5 backdrop-blur-[2px] z-20">
           <button
             onClick={(e) => {
               e.stopPropagation();
               onOpenModal(project);
             }}
-            className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-neutral-900/90 border border-neutral-700 hover:bg-neutral-800 flex items-center gap-1.5 shadow-lg"
+            className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-neutral-900/95 border border-neutral-700 hover:bg-neutral-800 flex items-center gap-1.5 shadow-lg"
           >
             <Eye className="w-3.5 h-3.5 text-emerald-400" />
             <span>Case Study</span>
@@ -52,27 +62,39 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 flex items-center gap-1.5 shadow-lg shadow-emerald-600/30"
+            className="px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 flex items-center gap-1.5 shadow-lg shadow-emerald-600/30 whitespace-nowrap"
           >
-            <span>Live Site</span>
+            <span>View Live Demo</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
-        </div>
-
-        {/* Category Pill Over Preview */}
-        <div className="absolute top-3 left-3 pointer-events-none">
-          <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-neutral-950/80 text-emerald-400 border border-emerald-500/30 backdrop-blur-md">
-            {project.category}
-          </span>
         </div>
       </div>
 
       {/* Body Content */}
       <div className="p-6 flex-1 flex flex-col justify-between">
         <div>
-          {/* Tagline */}
-          <div className="text-xs font-medium text-emerald-600 dark:text-emerald-400 mb-1.5 line-clamp-1">
-            {project.tagline}
+          {/* Tagline & View Switcher */}
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 line-clamp-1">
+              {project.tagline}
+            </span>
+            <button
+              onClick={toggleViewMode}
+              className="shrink-0 text-[10px] font-mono px-2 py-0.5 rounded-md bg-neutral-800/60 hover:bg-neutral-800 text-neutral-400 hover:text-neutral-200 border border-neutral-700/60 transition-colors flex items-center gap-1"
+              title="Toggle preview display"
+            >
+              {viewMode === 'photo' ? (
+                <>
+                  <Code2 className="w-2.5 h-2.5 text-cyan-400" />
+                  <span>UI Blueprint</span>
+                </>
+              ) : (
+                <>
+                  <Camera className="w-2.5 h-2.5 text-emerald-400" />
+                  <span>Real Photo</span>
+                </>
+              )}
+            </button>
           </div>
 
           {/* Project Title */}
@@ -114,24 +136,39 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }
           </div>
 
           {/* Action Footer */}
-          <div className="pt-4 border-t border-neutral-800/60 dark:border-neutral-800/80 light:border-neutral-100 flex items-center justify-between gap-3">
+          <div className="pt-4 border-t border-neutral-800/60 dark:border-neutral-800/80 light:border-neutral-100 flex items-center justify-between gap-2">
             <button
               onClick={() => onOpenModal(project)}
               className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors flex items-center gap-1"
             >
-              <span>View Details</span>
+              <span>Case Study</span>
               <span>→</span>
             </button>
 
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 transition-all hover:-translate-y-0.5"
-            >
-              <span>Live Website</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            <div className="flex items-center gap-2">
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-neutral-400 hover:text-white bg-neutral-800/80 hover:bg-neutral-800 border border-neutral-700/60 transition-all hover:-translate-y-0.5"
+                  aria-label={`View ${project.name} on GitHub`}
+                >
+                  <span>GitHub</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 transition-all hover:-translate-y-0.5 whitespace-nowrap"
+                aria-label={`View Live Demo of ${project.name}`}
+              >
+                <span>View Live Demo</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

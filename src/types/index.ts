@@ -9,6 +9,18 @@ export type ProjectCategory =
   | 'Islamic Tech'
   | 'Legal-Tech';
 
+export interface ProjectImage {
+  url: string;
+  caption: string;
+  alt: string;
+  category?: string;
+}
+
+export interface ProjectStat {
+  label: string;
+  value: string;
+}
+
 export interface Project {
   id: string;
   name: string;
@@ -25,7 +37,10 @@ export interface Project {
   githubUrl?: string;
   featured?: boolean;
   accentColor: string; // e.g. emerald, cyan, amber, violet, rose, orange
-  previewType: 'food-ordering' | 'dental' | 'productivity' | 'jungle' | 'itkan' | 'elpacho' | 'yellowflower' | 'kosykawa' | 'inheritance' | 'garden';
+  previewType: 'typemaster' | 'makecv' | 'food-ordering' | 'dental' | 'productivity' | 'jungle' | 'jungle-house' | 'itkan' | 'elpacho' | 'yellowflower' | 'kosykawa' | 'inheritance' | 'garden' | 'custom' | string;
+  image: string; // Primary realistic photograph of the application or environment
+  gallery: ProjectImage[]; // Realistic photo gallery and interface views
+  stats?: ProjectStat[];
 }
 
 export interface SkillCategory {

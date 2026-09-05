@@ -2,6 +2,102 @@ import { Project } from '../types';
 
 export const PROJECTS: Project[] = [
   {
+    id: 'typemaster',
+    name: 'TypeMaster',
+    category: 'Productivity',
+    categoryLabel: 'Frontend / Productivity / Developer Tool',
+    tagline: 'Adaptive touch-typing trainer with heatmaps & analytics',
+    shortDescription: 'A privacy-first, offline-capable typing trainer with adaptive drills, keyboard heatmaps, finger-position guidance, gamification, and detailed WPM/accuracy analytics.',
+    fullDescription: 'TypeMaster is a modern, offline-first touch-typing training web application designed to improve typing speed, accuracy, finger positioning, and keyboard efficiency through adaptive practice and detailed performance analytics.',
+    problemSolved: 'Eliminates inefficient typing habits and typing bottlenecks through targeted bigram drills, real-time dual-hand finger guidance, and offline-capable analytics without requiring an account.',
+    targetAudience: 'Developers, writers, students, transcriptionists, and professionals seeking to master touch-typing and maximize words-per-minute throughput.',
+    features: [
+      'Timed typing sprints, word-count challenges, literature quotes & programming exercises',
+      'Real-time dual-hand keyboard visualizer with home-row anchors (A S D F / J K L ;)',
+      'Distraction-free focus mode with fullscreen typing environment (Alt + F)',
+      'Keyboard heatmaps visualizing frequently missed keys and error-pair latency',
+      'Adaptive practice generating personalized drills based on missed bigrams',
+      'Analytics & gamification tracking WPM progression, accuracy, XP and daily streaks',
+      '100% privacy-first offline architecture with IndexedDB and JSON/CSV export'
+    ],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'IndexedDB', 'Web APIs', 'Data Visualization'],
+    liveUrl: 'https://typemaster-jade.vercel.app/',
+    featured: true,
+    accentColor: 'cyan',
+    previewType: 'typemaster',
+    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Ergonomic tactile mechanical keyboard optimized for touch-typing and finger position mastery',
+        alt: 'TypeMaster mechanical keyboard layout'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Real-time code typing sprints and adaptive typing drill analytics',
+        alt: 'TypeMaster code exercises and analytics'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Keyboard error heatmap, WPM progression curves, and accuracy tracking dashboard',
+        alt: 'TypeMaster performance analytics'
+      }
+    ],
+    stats: [
+      { label: 'Storage', value: 'IndexedDB (Offline)' },
+      { label: 'Analytics', value: 'Live WPM & Heatmap' },
+      { label: 'Focus Mode', value: 'Alt + F Fullscreen' }
+    ]
+  },
+  {
+    id: 'makecv',
+    name: 'MakeCV',
+    category: 'Productivity',
+    categoryLabel: 'Frontend / Productivity / Resume Builder',
+    tagline: 'Privacy-first ATS resume builder with A4 preview & multi-page PDF',
+    shortDescription: 'A privacy-first CV builder with ATS-friendly templates, responsive A4 rendering, multi-page PDF generation, JSON backup/restore, and Arabic/Amharic RTL support.',
+    fullDescription: 'MakeCV is a privacy-first, client-side resume builder focused on professional CV creation, ATS-friendly templates, responsive A4 document rendering, internationalization, and reliable multi-page PDF generation.',
+    problemSolved: 'Solves privacy concerns and awkward PDF formatting issues in traditional resume builders with client-side zero-account generation, true A4 print fidelity, and full Amharic & Arabic RTL support.',
+    targetAudience: 'Job seekers, software developers, bilingual candidates, Ethiopian and international professionals needing ATS-compliant resumes with reliable PDF export.',
+    features: [
+      '6 ATS-friendly resume templates with modern, recruiter-friendly layouts',
+      'Real-time A4 live document preview with responsive zoom across desktop & mobile',
+      'Print-fidelity architecture preventing awkward section and card page splitting',
+      'Reliable multi-page PDF generation via canvas sandboxing and off-screen rendering',
+      'One-click JSON backup & restore without requiring accounts or logins',
+      'Internationalization with RTL layout support, Arabic, and Amharic Ethiopic scripts',
+      '100% client-side privacy-first architecture with zero backend data storage'
+    ],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'PDF Generation', 'Internationalization', 'RTL', 'Responsive Design'],
+    liveUrl: 'https://makecv-plum.vercel.app/',
+    featured: true,
+    accentColor: 'emerald',
+    previewType: 'makecv',
+    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1200&q=80',
+        caption: 'ATS-optimized professional resume layout with modern typography and clean sections',
+        alt: 'MakeCV A4 resume preview'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Multi-page document structuring with print fidelity and zero awkward page splits',
+        alt: 'MakeCV multi-page layout'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Bilingual and RTL resume authoring supporting English, Amharic, and Arabic',
+        alt: 'MakeCV internationalization support'
+      }
+    ],
+    stats: [
+      { label: 'Templates', value: '6 ATS Formats' },
+      { label: 'PDF Export', value: 'Multi-Page A4' },
+      { label: 'Languages', value: 'EN, AM, AR (RTL)' }
+    ]
+  },
+  {
     id: 'food-ordering-system',
     name: 'Food Ordering System',
     category: 'Food & E-Commerce',
@@ -25,7 +121,30 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://imran13.infinityfreeapp.com/',
     featured: true,
     accentColor: 'amber',
-    previewType: 'food-ordering'
+    previewType: 'food-ordering',
+    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Traditional Ethiopian dining dishes with authentic presentation and spiced stews',
+        alt: 'Ethiopian food feast presentation'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Mobile food ordering cart & digital checkout supporting Telebirr and CBE Birr',
+        alt: 'Mobile ordering and delivery interface'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Live restaurant operations, order status updates, and kitchen queue management',
+        alt: 'Restaurant operations and order fulfillment'
+      }
+    ],
+    stats: [
+      { label: 'Local Payments', value: 'Telebirr & CBE' },
+      { label: 'Architecture', value: 'PHP + MySQL' },
+      { label: 'Dashboard', value: 'Live Order Queue' }
+    ]
   },
   {
     id: 'dr-addis-dental',
@@ -50,7 +169,30 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://dr-addis-speciality-dental-care-cen.vercel.app/',
     featured: true,
     accentColor: 'emerald',
-    previewType: 'dental'
+    previewType: 'dental',
+    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Specialized dental operatory clinic room equipped with modern dental care chairs',
+        alt: 'Clinical dental examination room'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Patient consultation and smile transformation planning with dental practitioners',
+        alt: 'Dental patient consultation'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Sterilized clinical instruments and diagnostic technology for precision care',
+        alt: 'Clinical dental instruments'
+      }
+    ],
+    stats: [
+      { label: 'Booking System', value: 'Real-Time Slots' },
+      { label: 'Procedures Covered', value: '7+ Clinical Fields' },
+      { label: 'Mobile Performance', value: '100% Responsive' }
+    ]
   },
   {
     id: 'stay-awake',
@@ -72,10 +214,33 @@ export const PROJECTS: Project[] = [
       'Zero-installation browser execution for rapid workflow access'
     ],
     technologies: ['React', 'Web APIs', 'Screen Wake Lock', 'Tailwind CSS', 'Audio Synthesis'],
-    liveUrl: 'https://stayawake-38.vercel.app/',
+    liveUrl: 'https://stay-awake-two.vercel.app/',
     featured: true,
     accentColor: 'cyan',
-    previewType: 'productivity'
+    previewType: 'productivity',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Professional developer workstation with active screen wake lock during long coding blocks',
+        alt: 'Developer workstation with active displays'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Ergonomic 20-20-20 rule reminders and eye wellness alerts during intensive study',
+        alt: 'Ergonomic workspace'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Zero-install browser execution for real-time presentation and dashboard monitoring',
+        alt: 'Laptop productivity interface'
+      }
+    ],
+    stats: [
+      { label: 'Core Engine', value: 'Screen Wake Lock API' },
+      { label: 'Ergonomics', value: '20-20-20 Rule' },
+      { label: 'Footprint', value: 'Zero Install' }
+    ]
   },
   {
     id: 'jungle-restaurant',
@@ -100,7 +265,78 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://junglerestaurant.vercel.app/',
     featured: true,
     accentColor: 'emerald',
-    previewType: 'jungle'
+    previewType: 'jungle',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Lush indoor tropical botanical dining room with ambient hanging lanterns',
+        alt: 'Botanical rainforest dining room'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Artisan culinary plating combining exotic tropical spices and fresh produce',
+        alt: 'Gourmet restaurant dining plate'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Private botanical dining cabana with dedicated guest reservation system',
+        alt: 'Private garden dining cabana'
+      }
+    ],
+    stats: [
+      { label: 'Dietary Filters', value: 'Halal, Vegan, GF' },
+      { label: 'Booking', value: 'Cabanas & Tables' },
+      { label: 'Experience', value: 'Botanical Dining' }
+    ]
+  },
+  {
+    id: 'jungle-house',
+    name: 'Jungle House',
+    category: 'Hospitality',
+    categoryLabel: 'Hospitality, Luxury Lodges & Event Sanctuaries',
+    tagline: 'Luxury botanical resort, private forest lodges & event sanctuary',
+    shortDescription: 'An exclusive eco-resort and event destination web platform featuring luxury accommodation showcases, lodge availability checking, and experiential retreat bookings.',
+    fullDescription: 'Jungle House is a premier luxury hospitality and eco-resort sanctuary nestled in lush natural surroundings. The digital platform provides an immersive guest journey, showcasing bespoke private forest lodges, botanical wellness amenities, seasonal culinary dining, and high-touch reservation workflows for private celebrations, corporate retreats, and bespoke weddings.',
+    problemSolved: 'Transforms physical resort exploration and lodge reservation inquiries into an intuitive, visually captivating digital journey with real-time intake and transparent guest accommodations.',
+    targetAudience: 'Travelers, honeymooners, corporate retreat organizers, event planners, and families seeking luxury eco-sanctuary stays and private celebrations.',
+    features: [
+      'Interactive luxury lodge and private suite showcase with panoramic views',
+      'Direct guest booking inquiry flow with customizable dates and party size',
+      'Exclusive event hosting portal for weddings, corporate summits & celebrations',
+      'Botanical spa and wellness activity schedules with guided forest excursions',
+      'Curated farm-to-table dining showcases and bespoke private dining menus',
+      'High-resolution multi-view gallery capturing day and twilight atmospheres',
+      'Fast, mobile-optimized responsive architecture with seamless inquiry routing'
+    ],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Resort Booking UI', 'Responsive Design'],
+    liveUrl: 'https://jungle-house.vercel.app/',
+    featured: true,
+    accentColor: 'emerald',
+    previewType: 'jungle-house',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Private forest luxury villa with panoramic infinity pool overlooking lush botanical canopy',
+        alt: 'Jungle House luxury eco-lodge'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Spacious bespoke master suite with natural wood finishes and floor-to-ceiling glass',
+        alt: 'Resort master lodge suite'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Open-air botanical celebration pavilion and outdoor dining terrace for private events',
+        alt: 'Private event pavilion'
+      }
+    ],
+    stats: [
+      { label: 'Accommodations', value: 'Bespoke Forest Lodges' },
+      { label: 'Reservations', value: 'Private & Events' },
+      { label: 'Atmosphere', value: 'Eco-Luxury Sanctuary' }
+    ]
   },
   {
     id: 'itkan-academy',
@@ -125,7 +361,30 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://itkan-seven.vercel.app/',
     featured: true,
     accentColor: 'amber',
-    previewType: 'itkan'
+    previewType: 'itkan',
+    image: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Classical Islamic architecture and geometric learning halls',
+        alt: 'Islamic architectural academy'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Scholarly Arabic text analysis, Quranic recitation and Tajweed study curricula',
+        alt: 'Arabic manuscript and text study'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Structured academic library with downloadable course syllabi and reading dossiers',
+        alt: 'Academic library and course resources'
+      }
+    ],
+    stats: [
+      { label: 'Language', value: 'Arabic & English RTL' },
+      { label: 'Curricula', value: 'Tajweed & Fiqh' },
+      { label: 'Design', value: 'Geometric Symmetry' }
+    ]
   },
   {
     id: 'el-pacho-coffee',
@@ -150,7 +409,30 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://el-pacho-coffee-roasters.vercel.app/',
     featured: false,
     accentColor: 'amber',
-    previewType: 'elpacho'
+    previewType: 'elpacho',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Freshly roasted single-origin artisan coffee beans inspected for cupping notes',
+        alt: 'Roasted coffee beans and cupping scoop'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Precision barista manual V60 pour-over extraction with interactive brewing guides',
+        alt: 'Barista pour-over brew process'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Traceable high-altitude green coffee sacks sourced directly from farmer cooperatives',
+        alt: 'Coffee bean burlap sacks'
+      }
+    ],
+    stats: [
+      { label: 'Roast Transparency', value: 'Altitude & Cupping' },
+      { label: 'Brew Guides', value: 'V60, Chemex & Espresso' },
+      { label: 'Ordering', value: 'Retail & Wholesale B2B' }
+    ]
   },
   {
     id: 'yellow-flower-coffee',
@@ -175,7 +457,30 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://yellowflowercoffee.vercel.app/',
     featured: false,
     accentColor: 'yellow',
-    previewType: 'yellowflower'
+    previewType: 'yellowflower',
+    image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Sunlit specialty coffee counter surrounded by aesthetic floral blooms and glass drippers',
+        alt: 'Sunlit cafe counter with yellow flowers'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Artisanal morning pastries, botanical cold brews, and seasonal pairings',
+        alt: 'Cafe interior with pastries and coffee'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Delicate light-roast floral pour-over preparation highlighting citrus and jasmine notes',
+        alt: 'Pour over extraction in cafe'
+      }
+    ],
+    stats: [
+      { label: 'Roast Profile', value: 'Floral & Citrus' },
+      { label: 'Pickup Ordering', value: 'Instant Cart' },
+      { label: 'Aesthetic', value: 'Sunlit Boutique' }
+    ]
   },
   {
     id: 'kosy-kawa',
@@ -200,7 +505,30 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://kosy-kawa.vercel.app/',
     featured: false,
     accentColor: 'orange',
-    previewType: 'kosykawa'
+    previewType: 'kosykawa',
+    image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Warm European neighborhood coffeehouse with comfortable wood furnishings and warm lighting',
+        alt: 'Cozy European cafe interior'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Fresh-out-of-the-oven golden croissants and bakery batch tracking timetable',
+        alt: 'Freshly baked croissants'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Remote-worker laptop friendly tables with verified high-speed Wi-Fi and power outlets',
+        alt: 'Remote work table with coffee and laptop'
+      }
+    ],
+    stats: [
+      { label: 'Work Amenities', value: 'High-Speed Wi-Fi' },
+      { label: 'Bakery Timetable', value: 'Live Fresh Bakes' },
+      { label: 'Community', value: 'Event Calendar' }
+    ]
   },
   {
     id: 'islamic-inheritance',
@@ -226,7 +554,30 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://islamic-inheritance-six.vercel.app/',
     featured: true,
     accentColor: 'violet',
-    previewType: 'inheritance'
+    previewType: 'inheritance',
+    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Formal legal estate distribution documentation, kinship trees, and estate ledgers',
+        alt: 'Legal estate documentation and calculation desk'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Computational analytics dashboard computing Quranic fractional shares, Awl and Radd',
+        alt: 'Data calculation charts'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Classical jurisprudence texts and mathematical verification records',
+        alt: 'Classical legal reference texts'
+      }
+    ],
+    stats: [
+      { label: 'Calculation Rigor', value: '100% Precise Math' },
+      { label: 'Legal Rules', value: 'Awl, Radd & Hajb' },
+      { label: 'Export Format', value: 'Breakdown Statement' }
+    ]
   },
   {
     id: 'al-white-garden',
@@ -251,6 +602,29 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://alwhitegardenrestaurantcoffee.vercel.app/',
     featured: false,
     accentColor: 'emerald',
-    previewType: 'garden'
+    previewType: 'garden',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Twilight garden dining illuminated with warm festoon lights and outdoor private cabanas',
+        alt: 'Illuminated outdoor garden dining at twilight'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Outdoor garden dining tables set among manicured palms and landscaped greenery',
+        alt: 'Outdoor garden dining tables'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1200&q=80',
+        caption: 'Garden specialty coffee and signature mocktail bar with outdoor lounge seating',
+        alt: 'Garden specialty drink bar'
+      }
+    ],
+    stats: [
+      { label: 'Venue Setting', value: 'Outdoor Cabanas' },
+      { label: 'Reservations', value: 'Table & Event Booking' },
+      { label: 'Gastronomy', value: 'All-Day Dining & Bar' }
+    ]
   }
 ];

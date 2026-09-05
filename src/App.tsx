@@ -13,6 +13,7 @@ import { GitHubSpotlight } from './components/GitHubSpotlight';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { CVModal } from './components/CVModal';
+import { ChatBot } from './components/ChatBot';
 
 export function AppContent() {
   const { isRTL } = useLanguage();
@@ -80,6 +81,9 @@ export function AppContent() {
 
       {/* Interactive CV Modal Provider */}
       <CVModal isOpen={isCVModalOpen} onClose={handleCloseCV} />
+
+      {/* Interactive AI ChatBot for Overall Experience & Projects Q&A */}
+      <ChatBot onOpenCV={handleOpenCV} />
     </div>
   );
 }

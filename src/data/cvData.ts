@@ -78,10 +78,10 @@ export const CV_DATA: CVData = {
     ]
   },
   executiveSummary:
-    'Dedicated and results-oriented Full-Stack Web Developer based in Addis Ababa, Ethiopia, specializing in the end-to-end development of modern, responsive, and robust digital solutions. Experienced across the full software engineering lifecycle—from interactive user interface design using React, TypeScript, and modern Tailwind CSS to secure backend architecture using Node.js, Express, and PHP. Proven track record in designing normalized relational databases (MySQL, PostgreSQL), integrating Ethiopian digital payment gateways (Telebirr & CBE Birr), implementing secure authentication (JWT, RBAC), and shipping 9+ production-grade web applications across healthcare, e-commerce, hospitality, and legal technology.',
+    'Dedicated and results-oriented Full-Stack Web Developer based in Addis Ababa, Ethiopia, specializing in the end-to-end development of modern, responsive, and robust digital solutions. Experienced across the full software engineering lifecycle—from interactive user interface design using React, TypeScript, and modern Tailwind CSS to secure backend architecture using Node.js, Express, and PHP. Proven track record in designing normalized relational databases (MySQL, PostgreSQL), integrating Ethiopian digital payment gateways (Telebirr & CBE Birr), implementing secure authentication (JWT, RBAC), and shipping 13+ production-grade web applications across healthcare, e-commerce, hospitality, productivity tools, and legal technology.',
   
   keyHighlights: [
-    { label: 'Production Apps', value: '9+', detail: 'Built & deployed across 8 diverse industries' },
+    { label: 'Production Apps', value: '13+', detail: 'Built & deployed across diverse domains & tools' },
     { label: 'Tech Stack Breadth', value: '15+', detail: 'React, Node, PHP, TS, MySQL, Tailwind' },
     { label: 'Payment Integrations', value: 'Telebirr & CBE', detail: 'Local Ethiopian digital finance gateways' },
     { label: 'Architecture', value: 'Full Lifecycle', detail: 'UI/UX to Database, Security & Cloud Deploy' }

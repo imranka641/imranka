@@ -97,6 +97,24 @@ export interface TranslationDictionary {
     badge: string;
     title: string;
     subtitle: string;
+    fastResponse: string;
+    fastResponseSub: string;
+    chooseOption: string;
+    telegram: string;
+    whatsapp: string;
+    email: string;
+    provideDetails: string;
+    fullName: string;
+    namePlaceholder: string;
+    emailOrPhone: string;
+    emailOrPhonePlaceholder: string;
+    projectSubject: string;
+    subjectPlaceholder: string;
+    projectCategory: string;
+    message: string;
+    messagePlaceholder: string;
+    sendBtn: string;
+    sendMessage: string;
     formName: string;
     formContact: string;
     formType: string;
@@ -105,7 +123,6 @@ export interface TranslationDictionary {
     formTimeline: string;
     formNotes: string;
     formSubmit: string;
-    fastResponse: string;
   };
   footer: {
     tagline: string;
@@ -139,11 +156,11 @@ export const translations: Record<Language, TranslationDictionary> = {
         'Building Modern Digital Experiences',
         'Turning Ideas Into Scalable Web Applications'
       ],
-      description: 'Full-stack software developer with a proven track record delivering 9+ high-performance web systems across healthcare, hospitality, e-commerce with Ethiopian payments (Telebirr & CBE), and legal tech. Crafting fast, accessible, and scalable digital solutions.',
+      description: 'Full-stack software developer with a proven track record delivering 13+ high-performance web systems across healthcare, hospitality, e-commerce with Ethiopian payments (Telebirr & CBE), developer tools, and legal tech. Crafting fast, accessible, and scalable digital solutions.',
       ctaProjects: 'View Verified Work',
       ctaContact: "Let's Build Together",
       ctaCv: 'Interactive CV / PDF',
-      metricProjects: '9+',
+      metricProjects: '13+',
       metricProjectsLabel: 'Live Production Deliveries',
       metricDeploy: '100%',
       metricDeployLabel: 'Responsive & Fast UI',
@@ -191,12 +208,12 @@ export const translations: Record<Language, TranslationDictionary> = {
     skills: {
       badge: 'Technical Capabilities',
       title: 'Full-Stack Engineering Stack',
-      subtitle: 'A versatile toolkit honed across 9+ production systems, focused on stability, performance, and maintainability.',
+      subtitle: 'A versatile toolkit honed across 13+ production systems, focused on stability, performance, and maintainability.',
     },
     projects: {
       badge: 'Verified Portfolio',
       title: 'Featured Production Work',
-      subtitle: 'Explore 9 deployed web systems engineered with modern architectures, custom databases, and real user workflows.',
+      subtitle: 'Explore 13 deployed web systems engineered with modern architectures, custom databases, and real user workflows.',
       filterAll: 'All Systems',
       viewLive: 'Live Demo',
       viewSource: 'GitHub Code',
@@ -230,6 +247,24 @@ export const translations: Record<Language, TranslationDictionary> = {
       badge: "Let's Connect",
       title: 'Start Your Project or Inquire',
       subtitle: 'Select your preferred direct messaging channel below (Telegram, WhatsApp, or Email) for an instant formatted inquiry.',
+      fastResponse: 'Fastest response via Telegram (@imranka641) & WhatsApp (+251 913 841 757)',
+      fastResponseSub: 'Direct developer contact — typical response within 2–4 hours',
+      chooseOption: 'Choose Preferred Contact Channel',
+      telegram: 'Telegram (Instant Response)',
+      whatsapp: 'WhatsApp (Direct Chat)',
+      email: 'Email (Formal Inquiry)',
+      provideDetails: 'Project Details & Specifications',
+      fullName: 'Your Full Name / Organization',
+      namePlaceholder: 'e.g. Abebe Bekele / Tech Solutions PLC',
+      emailOrPhone: 'Your Email, Phone, or Telegram',
+      emailOrPhonePlaceholder: 'e.g. imranka641@gmail.com or @username',
+      projectSubject: 'Project Subject / Title',
+      subjectPlaceholder: 'e.g. Addis Restaurant Ordering Web App with Telebirr',
+      projectCategory: 'Project / Service Domain',
+      message: 'Project Requirements & Specifications',
+      messagePlaceholder: 'Describe your core goals, target users, desired features (e.g. Telebirr payments, admin panel), and timeline expectations...',
+      sendBtn: 'Dispatch Formatted Inquiry',
+      sendMessage: 'Send Message via Selected Channel',
       formName: 'Your Full Name',
       formContact: 'Your Email or Phone / Telegram',
       formType: 'Project / Service Category',
@@ -238,7 +273,6 @@ export const translations: Record<Language, TranslationDictionary> = {
       formTimeline: 'Target Timeline',
       formNotes: 'Project Details & Requirements',
       formSubmit: 'Generate Formatted Message',
-      fastResponse: 'Fastest response via Telegram (@imranka641) & WhatsApp (+251 913 841 757)',
     },
     footer: {
       tagline: 'Full-Stack Developer crafting high-performance, responsive web systems and digital experiences.',
@@ -271,11 +305,11 @@ export const translations: Record<Language, TranslationDictionary> = {
         'ዘመናዊ ዲጂታል ቴክኖሎጂዎችን መገንባት',
         'ሀሳቦችን ወደ አስተማማኝ የድር ሲስተም መቀየር'
       ],
-      description: 'በጤና ጥበቃ፣ ሆስፒታሊቲ፣ የቴሌብር እና ሲቢኢ ብር የክፍያ ውህደት ባላቸው የኢ-ኮሜርስ መድረኮች እና ልዩ ልዩ የቢዝነስ ሶፍትዌሮች ላይ ከ9 በላይ የተረጋገጡ የድር ሲስተሞችን የገነባ የሙሉ-ስታክ ሶፍትዌር አበልጻጊ።',
+      description: 'በጤና ጥበቃ፣ ሆስፒታሊቲ፣ የቴሌብር እና ሲቢኢ ብር የክፍያ ውህደት ባላቸው የኢ-ኮሜርስ መድረኮች እና ልዩ ልዩ የቢዝነስ ሶፍትዌሮች ላይ ከ13 በላይ የተረጋገጡ የድር ሲስተሞችን የገነባ የሙሉ-ስታክ ሶፍትዌር አበልጻጊ።',
       ctaProjects: 'የተሰሩ ፕሮጀክቶችን ይመልከቱ',
       ctaContact: 'አብረን እንስራ',
       ctaCv: 'ሲቪ / PDF አውርድ',
-      metricProjects: '9+',
+      metricProjects: '13+',
       metricProjectsLabel: 'የተጠናቀቁ የቀጥታ ሲስተሞች',
       metricDeploy: '100%',
       metricDeployLabel: 'ፈጣን እና ምቹ ዲዛይን',
@@ -323,12 +357,12 @@ export const translations: Record<Language, TranslationDictionary> = {
     skills: {
       badge: 'የቴክኒክ ክህሎቶች',
       title: 'የቴክኖሎጂ እና የሶፍትዌር መሳሪያዎች',
-      subtitle: 'ከ9+ በላይ የቀጥታ ሲስተሞች ግንባታ የተፈተኑ እና ለዘላቂነት የተመረጡ ቴክኖሎጂዎች።',
+      subtitle: 'ከ13+ በላይ የቀጥታ ሲስተሞች ግንባታ የተፈተኑ እና ለዘላቂነት የተመረጡ ቴክኖሎጂዎች።',
     },
     projects: {
       badge: 'የተሰሩ ስራዎች',
       title: 'የተመረጡ የቀጥታ ፕሮጀክቶች',
-      subtitle: 'በዘመናዊ አሰራር እና በእውነተኛ ዳታቤዝ የተገነቡ 9 የቀጥታ የድር ሲስተሞችን ያስሱ።',
+      subtitle: 'በዘመናዊ አሰራር እና በእውነተኛ ዳታቤዝ የተገነቡ 13 የቀጥታ የድር ሲስተሞችን ያስሱ።',
       filterAll: 'ሁሉም ሲስተሞች',
       viewLive: 'ቀጥታ ይመልከቱ',
       viewSource: 'የኮድ ምንጭ',
@@ -362,6 +396,24 @@ export const translations: Record<Language, TranslationDictionary> = {
       badge: 'ያግኙኝ',
       title: 'ፕሮጀክትዎን አሁኑኑ ያስጀምሩ',
       subtitle: 'ፈጣን መልስ ለማግኘት ከስር ካሉት አማራጮች (ቴሌግራም፣ ዋትስአፕ ወይም ኢሜይል) ይምረጡ።',
+      fastResponse: 'ፈጣን ምላሽ በቴሌግራም (@imranka641) እና ዋትስአፕ (+251 913 841 757)',
+      fastResponseSub: 'ቀጥተኛ የገንቢ ግንኙነት — በ2–4 ሰዓት ውስጥ ምላሽ',
+      chooseOption: 'የመገናኛ መንገድ ይምረጡ',
+      telegram: 'ቴሌግራም (ፈጣን)',
+      whatsapp: 'ዋትስአፕ',
+      email: 'ኢሜይል',
+      provideDetails: 'የፕሮጀክት መረጃና ፍላጎቶች',
+      fullName: 'ሙሉ ስምዎ ወይም ድርጅትዎ',
+      namePlaceholder: 'ምሳሌ፦ አበበ በቀለ / ቴክ ሶሉሽንስ',
+      emailOrPhone: 'ኢሜይል፣ ስልክ ወይም ቴሌግራም',
+      emailOrPhonePlaceholder: 'ምሳሌ፦ email@domain.com ወይም @username',
+      projectSubject: 'የመልእክቱ ርዕስ',
+      subjectPlaceholder: 'ምሳሌ፦ የቴሌብር ክፍያ ያለበት የሬስቶራንት ድረ-ገጽ',
+      projectCategory: 'የፕሮጀክቱ ዘርፍ',
+      message: 'የፕሮጀክቱ ዝርዝር ፍላጎቶች',
+      messagePlaceholder: 'የሚፈልጉትን ሲስተም፣ ቁልፍ ገፅታዎች እና የሚፈለግበትን ጊዜ ይግለጹ...',
+      sendBtn: 'መልእክቱን አዘጋጅና ላክ',
+      sendMessage: 'በተመረጠው መንገድ መልእክት ላክ',
       formName: 'ሙሉ ስምዎ',
       formContact: 'ኢሜይል ወይም ስልክ ቁጥር / ቴሌግራም',
       formType: 'የፕሮጀክት / የአገልግሎት አይነት',
@@ -370,7 +422,6 @@ export const translations: Record<Language, TranslationDictionary> = {
       formTimeline: 'የሚፈለግበት ጊዜ',
       formNotes: 'የፕሮጀክቱ ዝርዝር ፍላጎቶች',
       formSubmit: 'የተዘጋጀውን መልእክት ላክ',
-      fastResponse: 'ፈጣን ምላሽ በቴሌግራም (@imranka641) እና ዋትስአፕ (+251 913 841 757)',
     },
     footer: {
       tagline: 'ፈጣን፣ አስተማማኝ እና ዘመናዊ የድር ሲስተሞችን የሚያበለጽግ የሙሉ-ስታክ ሶፍትዌር ባለሙያ።',
@@ -403,11 +454,11 @@ export const translations: Record<Language, TranslationDictionary> = {
         'بناء تجارب وتطبيقات رقمية حديثة',
         'تحويل الأفكار إلى منصات ويب قابلة للتوسع'
       ],
-      description: 'مطور برمجيات ويب متكامل ذو خبرة مثبتة في إطلاق أكثر من 9 أنظمة حية تشمل منصات الرعاية الصحية، الضيافة، التجارة الإلكترونية مع بوابات الدفع الإثيوبية (Telebirr و CBE)، والحلول البرمجية المتخصصة.',
+      description: 'مطور برمجيات ويب متكامل ذو خبرة مثبتة في إطلاق أكثر من 11 نظام حي تشمل منصات الرعاية الصحية، الضيافة، التجارة الإلكترونية مع بوابات الدفع الإثيوبية (Telebirr و CBE)، والحلول البرمجية المتخصصة.',
       ctaProjects: 'استعراض المشاريع المنجزة',
       ctaContact: 'لنعمل معاً',
       ctaCv: 'السيرة الذاتية / PDF',
-      metricProjects: '+9',
+      metricProjects: '+13',
       metricProjectsLabel: 'أنظمة حية مكتملة',
       metricDeploy: '100%',
       metricDeployLabel: 'تصميم سريع ومتجاوب',
@@ -455,12 +506,12 @@ export const translations: Record<Language, TranslationDictionary> = {
     skills: {
       badge: 'المهارات التقنية',
       title: 'حزمة التقنيات والبرمجيات',
-      subtitle: 'مجموعة أدوات شاملة مجربة في أكثر من 9 أنظمة إنتاجية، تركز على الاستقرار والسرعة.',
+      subtitle: 'مجموعة أدوات شاملة مجربة في أكثر من 13 نظام إنتاجي، تركز على الاستقرار والسرعة.',
     },
     projects: {
       badge: 'معرض الأعمال',
       title: 'المشاريع المنفذة على أرض الواقع',
-      subtitle: 'استكشف 9 أنظمة ويب حية تم بناؤها ببنى معمارية حديثة وقواعد بيانات متكاملة.',
+      subtitle: 'استكشف 13 نظام ويب حي تم بناؤه ببنى معمارية حديثة وقواعد بيانات متكاملة.',
       filterAll: 'جميع الأنظمة',
       viewLive: 'معاينة حية',
       viewSource: 'الكود المصدري',
@@ -494,6 +545,24 @@ export const translations: Record<Language, TranslationDictionary> = {
       badge: 'تواصل معي',
       title: 'ابدأ مشروعك أو استفسر الآن',
       subtitle: 'اختر قناتك المفضلة للمراسلة المباشرة (تيليجرام، واتساب، أو البريد الإلكتروني) لتجهيز رسالتك فوراً.',
+      fastResponse: 'أسرع رد عبر تيليجرام (@imranka641) وواتساب (+251 913 841 757)',
+      fastResponseSub: 'تواصل مباشر مع المطور — الرد عادة خلال ساعتين إلى 4 ساعات',
+      chooseOption: 'اختر وسيلة التواصل المفضلة',
+      telegram: 'تيليجرام (رد فوري)',
+      whatsapp: 'واتساب',
+      email: 'البريد الإلكتروني',
+      provideDetails: 'تفاصيل ومواصفات المشروع',
+      fullName: 'الاسم الكامل أو المؤسسة',
+      namePlaceholder: 'مثال: أحمد محمد / مؤسسة التقنية',
+      emailOrPhone: 'البريد الإلكتروني أو الهاتف أو تيليجرام',
+      emailOrPhonePlaceholder: 'مثال: email@domain.com أو @username',
+      projectSubject: 'عنوان المشروع',
+      subjectPlaceholder: 'مثال: نظام طلبات مطاعم مع ربط بوابات الدفع الإلكتروني',
+      projectCategory: 'مجال المشروع',
+      message: 'تفاصيل ومتطلبات المشروع',
+      messagePlaceholder: 'اشرح أهدافك الرئيسية، الميزات المطلوبة، والجدول الزمني المستهدف...',
+      sendBtn: 'تجهيز الرسالة وإرسالها',
+      sendMessage: 'إرسال الرسالة عبر القناة المختارة',
       formName: 'الاسم الكامل',
       formContact: 'البريد الإلكتروني أو رقم الهاتف / تيليجرام',
       formType: 'نوع المشروع / الخدمة',
@@ -502,7 +571,6 @@ export const translations: Record<Language, TranslationDictionary> = {
       formTimeline: 'الجدول الزمني المستهدف',
       formNotes: 'تفاصيل ومتطلبات المشروع',
       formSubmit: 'تجهيز الرسالة وإرسالها',
-      fastResponse: 'أسرع رد عبر تيليجرام (@imranka641) وواتساب (+251 913 841 757)',
     },
     footer: {
       tagline: 'مطور برمجيات ويب متكامل يبتكر حلولاً رقمية سريعة وموثوقة وعالية الكفاءة.',

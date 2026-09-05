@@ -1,37 +1,118 @@
 import React from 'react';
 import { 
   HeartPulse, 
-  Eye, 
   Utensils, 
   BookOpen, 
   Coffee, 
-  Scale, 
-  Flower2, 
   Trees, 
   Sparkles, 
   ShieldCheck, 
-  Calendar,
-  Clock,
-  CheckCircle2,
-  Lock,
-  Compass,
-  ShoppingBag,
-  CreditCard,
-  Smartphone,
-  Layers,
-  Database
+  Smartphone, 
+  Layers, 
+  Database,
+  Camera,
+  Code2,
+  Image as ImageIcon,
+  Keyboard,
+  FileText
 } from 'lucide-react';
 import { Project } from '../types';
 
 interface ProjectMockupProps {
   project: Project;
   isDetailed?: boolean;
+  viewMode?: 'photo' | 'mockup';
+  onToggleViewMode?: () => void;
+  selectedPhotoIndex?: number;
 }
 
-export const ProjectMockup: React.FC<ProjectMockupProps> = ({ project, isDetailed = false }) => {
+export const ProjectMockup: React.FC<ProjectMockupProps> = ({ 
+  project, 
+  isDetailed = false,
+  viewMode = 'photo',
+  onToggleViewMode,
+  selectedPhotoIndex = 0
+}) => {
   const { previewType } = project;
 
-  // Custom visual previews for each project type
+  // Realistic photo view
+  if (viewMode === 'photo') {
+    const currentPhoto = project.gallery?.[selectedPhotoIndex] || {
+      url: project.image,
+      caption: project.tagline,
+      alt: project.name
+    };
+
+    return (
+      <div className="w-full h-full relative overflow-hidden bg-neutral-950 group/photo select-none">
+        {/* Realistic Photograph */}
+        <img
+          src={currentPhoto.url}
+          alt={currentPhoto.alt || project.name}
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover group-hover/photo:scale-105 transition-transform duration-700 ease-out"
+          loading="lazy"
+        />
+
+        {/* Ambient Dark Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-black/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/50 via-transparent to-transparent pointer-events-none" />
+
+        {/* Top Badges */}
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
+          <div className="flex items-center gap-1.5">
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-neutral-950/85 text-emerald-400 border border-emerald-500/30 backdrop-blur-md flex items-center gap-1 shadow-sm">
+              <Camera className="w-3 h-3 text-emerald-400" />
+              <span>Real Photo</span>
+            </span>
+            {project.gallery && project.gallery.length > 1 && (
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-neutral-950/70 text-neutral-300 border border-neutral-800 backdrop-blur-md">
+                {project.gallery.length} photos
+              </span>
+            )}
+          </div>
+
+          {onToggleViewMode && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleViewMode();
+              }}
+              className="pointer-events-auto px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-neutral-900/90 hover:bg-neutral-800 text-neutral-200 border border-neutral-700/80 backdrop-blur-md transition-all flex items-center gap-1 shadow-md hover:text-emerald-400"
+              title="Switch to UI Architecture blueprint"
+            >
+              <Code2 className="w-3 h-3 text-cyan-400" />
+              <span className="hidden sm:inline">Show</span> Mockup
+            </button>
+          )}
+        </div>
+
+        {/* Bottom Realistic Photo Caption & Stat Pill */}
+        <div className="absolute bottom-3 left-3 right-3 z-10 pointer-events-none">
+          <div className="flex items-end justify-between gap-2">
+            <div className="max-w-[80%]">
+              <p className="text-[11px] font-medium text-white/95 line-clamp-1 drop-shadow-md">
+                {currentPhoto.caption || project.tagline}
+              </p>
+              <div className="flex items-center gap-2 mt-1">
+                {project.stats?.[0] && (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-neutral-900/85 text-emerald-300 border border-emerald-500/20 backdrop-blur-sm">
+                    {project.stats[0].label}: <span className="text-white font-semibold">{project.stats[0].value}</span>
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="p-1 rounded-md bg-neutral-950/70 text-neutral-400 border border-neutral-800 backdrop-blur-sm">
+              <ImageIcon className="w-3.5 h-3.5 text-neutral-300" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Simulated UI Blueprint / Architecture Mockup
   switch (previewType) {
     case 'food-ordering':
       return (
@@ -52,7 +133,7 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ project, isDetaile
           <div className="my-auto space-y-2 py-2">
             <div className="flex items-center justify-between">
               <div className="text-sm font-bold text-neutral-100 flex items-center gap-1.5">
-                <span>🍔 Restaurant Menu & Cart</span>
+                <span>Restaurant Menu & Cart</span>
               </div>
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">
                 Admin + Customer
@@ -101,38 +182,30 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ project, isDetaile
           </div>
 
           <div className="my-auto space-y-2 py-2">
-            <div className="text-sm font-bold text-neutral-100 flex items-center gap-1.5">
-              <span>Dr. Addis Speciality Center</span>
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-            </div>
+            <div className="text-sm font-bold text-neutral-100">Dr. Addis Clinical Care</div>
             <p className="text-[11px] text-neutral-300 line-clamp-2">
-              Implants • Orthodontics • Veneers • Root Canal • Pediatric Care
+              Real-time slot scheduling • Implants, Orthodontics, Veneers & Pediatric care • Transparent clinical intake.
             </p>
-            <div className="grid grid-cols-2 gap-1.5 pt-1 text-[10px]">
-              <div className="p-1.5 rounded bg-neutral-900/70 border border-neutral-800 text-emerald-300">
-                ⭐ Patient Smiles Showcase
-              </div>
-              <div className="p-1.5 rounded bg-neutral-900/70 border border-neutral-800 text-teal-300">
-                📅 Slot Scheduling Active
-              </div>
+            <div className="flex gap-1.5 text-[10px] text-emerald-300">
+              <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800/60">Smile Transformations</span>
+              <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800/60">Patient Intake</span>
             </div>
           </div>
 
           <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
-            <span>Addis Ababa, Ethiopia</span>
-            <span className="text-emerald-400 font-semibold">Clinical Restorations →</span>
+            <span>Specialist Dentistry</span>
+            <span className="text-emerald-400 font-semibold">Book Consult →</span>
           </div>
         </div>
       );
 
     case 'productivity':
       return (
-        <div className="w-full h-full bg-gradient-to-br from-cyan-950/80 via-neutral-900 to-sky-950/60 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
-          <div className="absolute top-0 right-0 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="w-full h-full bg-gradient-to-br from-cyan-950/80 via-neutral-900 to-slate-950/90 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
           <div className="flex items-center justify-between border-b border-cyan-800/40 pb-3">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-400">
-                <Eye className="w-4 h-4" />
+                <Sparkles className="w-4 h-4" />
               </div>
               <span className="font-bold text-xs tracking-wide uppercase text-cyan-300">Screen Wake Lock API</span>
             </div>
@@ -140,57 +213,49 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ project, isDetaile
           </div>
 
           <div className="my-auto space-y-2 py-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-bold text-neutral-100">StayAwake Ergonomics</span>
-              <span className="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono">Wake: ON</span>
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-[10px]">
-              <div className="p-2 rounded bg-neutral-900/80 border border-neutral-800">
-                <div className="text-cyan-400 font-semibold">20-20-20 Rule</div>
-                <div className="text-neutral-400">Eye strain mitigation</div>
-              </div>
-              <div className="p-2 rounded bg-neutral-900/80 border border-neutral-800">
-                <div className="text-cyan-400 font-semibold">Cognitive Checks</div>
-                <div className="text-neutral-400">Fatigue alerts & reflex</div>
-              </div>
+            <div className="text-sm font-bold text-neutral-100">StayAwake Productivity Engine</div>
+            <p className="text-[11px] text-neutral-300 line-clamp-2">
+              Native browser keep-alive • 20-20-20 ergonomic eye strain intervals • Cognitive alertness reflex checks.
+            </p>
+            <div className="flex gap-1.5 text-[10px] text-cyan-300">
+              <span className="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-800/60">No Desktop Install</span>
+              <span className="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-800/60">Audio Cues</span>
             </div>
           </div>
 
           <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
-            <span>Dark UI • Battery Efficient</span>
-            <span className="text-cyan-400 font-semibold">Web Utility →</span>
+            <span>Developer Utility</span>
+            <span className="text-cyan-400 font-semibold">Launch Tool →</span>
           </div>
         </div>
       );
 
     case 'jungle':
       return (
-        <div className="w-full h-full bg-gradient-to-br from-emerald-950/90 via-neutral-900 to-amber-950/50 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
-          <div className="absolute top-0 right-0 w-36 h-36 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="w-full h-full bg-gradient-to-br from-emerald-950/90 via-neutral-900 to-green-950/80 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
           <div className="flex items-center justify-between border-b border-emerald-800/40 pb-3">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400">
-                <Utensils className="w-4 h-4" />
+                <Trees className="w-4 h-4" />
               </div>
-              <span className="font-bold text-xs tracking-wide uppercase text-emerald-300">Botanical Gastronomy</span>
+              <span className="font-bold text-xs tracking-wide uppercase text-emerald-300">Botanical Dining</span>
             </div>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-900/60 text-emerald-300 border border-emerald-700/50">Cabana Booking</span>
           </div>
 
           <div className="my-auto space-y-2 py-2">
-            <div className="text-sm font-bold text-neutral-100">Jungle Restaurant Experience</div>
+            <div className="text-sm font-bold text-neutral-100">Jungle Sensory Experience</div>
             <p className="text-[11px] text-neutral-300 line-clamp-2">
-              Lush rainforest setting • Interactive digital menu with Vegan, Halal & Gluten-Free filters.
+              Digital culinary menus • Halal, Vegan & Gluten-Free filters • Private botanical cabana reservation system.
             </p>
-            <div className="flex gap-1.5 text-[9px]">
-              <span className="px-2 py-0.5 rounded bg-emerald-900/50 text-emerald-200 border border-emerald-800">Halal</span>
-              <span className="px-2 py-0.5 rounded bg-emerald-900/50 text-emerald-200 border border-emerald-800">Vegan</span>
-              <span className="px-2 py-0.5 rounded bg-emerald-900/50 text-emerald-200 border border-emerald-800">Gluten-Free</span>
+            <div className="flex gap-1.5 text-[10px] text-emerald-300">
+              <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800/60">Rainforest Ambience</span>
+              <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800/60">Chef Showcases</span>
             </div>
           </div>
 
           <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
-            <span>Atmospheric Dining</span>
+            <span>Hospitality Platform</span>
             <span className="text-emerald-400 font-semibold">Reserve Cabana →</span>
           </div>
         </div>
@@ -198,70 +263,62 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ project, isDetaile
 
     case 'itkan':
       return (
-        <div className="w-full h-full bg-gradient-to-br from-amber-950/80 via-neutral-900 to-yellow-950/60 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
-          <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="w-full h-full bg-gradient-to-br from-amber-950/80 via-neutral-900 to-yellow-950/70 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
           <div className="flex items-center justify-between border-b border-amber-800/40 pb-3">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400">
                 <BookOpen className="w-4 h-4" />
               </div>
-              <span className="font-bold text-xs tracking-wide uppercase text-amber-300">إتقان • Educational Academy</span>
+              <span className="font-bold text-xs tracking-wide uppercase text-amber-300">Itkan Academy (إتقان)</span>
             </div>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-900/60 text-amber-300 border border-amber-700/50">Bilingual Arabic/EN</span>
           </div>
 
           <div className="my-auto space-y-2 py-2">
-            <div className="text-sm font-bold text-neutral-100 flex items-center justify-between">
-              <span>Itkan Mastery Platform</span>
-              <span className="font-serif text-amber-300 text-sm">مَنْهَج الإِتْقَان</span>
-            </div>
+            <div className="text-sm font-bold text-neutral-100">Institutional Mastery Platform</div>
             <p className="text-[11px] text-neutral-300 line-clamp-2">
-              Quranic Recitation • Tajweed • Arabic Grammar • Fiqh & Ethical Leadership.
+              Quranic Tajweed & Arabic grammar • Islamic Jurisprudence & Ethical Leadership • Verified scholar dossiers.
             </p>
-            <div className="grid grid-cols-2 gap-1.5 text-[10px]">
-              <div className="p-1.5 rounded bg-neutral-900/70 border border-neutral-800 text-amber-300">
-                📜 Syllabus Downloads
-              </div>
-              <div className="p-1.5 rounded bg-neutral-900/70 border border-neutral-800 text-yellow-300">
-                👥 Cohort Registration
-              </div>
+            <div className="flex gap-1.5 text-[10px] text-amber-300">
+              <span className="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-800/60">Geometric Design</span>
+              <span className="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-800/60">Syllabus PDF</span>
             </div>
           </div>
 
           <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
-            <span>Geometric Design System</span>
-            <span className="text-amber-400 font-semibold">Explore Academy →</span>
+            <span>Islamic EdTech</span>
+            <span className="text-amber-400 font-semibold">Explore Courses →</span>
           </div>
         </div>
       );
 
     case 'elpacho':
       return (
-        <div className="w-full h-full bg-gradient-to-br from-amber-950/90 via-neutral-900 to-stone-900 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
+        <div className="w-full h-full bg-gradient-to-br from-amber-950/80 via-neutral-900 to-stone-900 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
           <div className="flex items-center justify-between border-b border-amber-800/40 pb-3">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400">
                 <Coffee className="w-4 h-4" />
               </div>
-              <span className="font-bold text-xs tracking-wide uppercase text-amber-300">Single-Origin Roastery</span>
+              <span className="font-bold text-xs tracking-wide uppercase text-amber-300">Micro-Roastery</span>
             </div>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-900/60 text-amber-300 border border-amber-700/50">Micro-Lots</span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-900/60 text-amber-300 border border-amber-700/50">Single-Origin</span>
           </div>
 
           <div className="my-auto space-y-2 py-2">
-            <div className="text-sm font-bold text-neutral-100">El Pacho Coffee Roasters</div>
+            <div className="text-sm font-bold text-neutral-100">El Pacho Roasters</div>
             <p className="text-[11px] text-neutral-300 line-clamp-2">
-              Farm altitude • Washed, Natural & Anaerobic micro-lots • V60, Chemex & AeroPress guides.
+              Traceable farm altitude & cupping notes • Interactive V60 & Chemex extraction guides • Wholesale B2B ordering.
             </p>
-            <div className="flex items-center gap-2 text-[10px] text-amber-200">
-              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">☕ Subscriptions</span>
-              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">📦 Wholesale B2B</span>
+            <div className="flex gap-1.5 text-[10px] text-amber-300">
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Washed & Natural</span>
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Sensory Radar</span>
             </div>
           </div>
 
           <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
-            <span>Specialty Cupping Notes</span>
-            <span className="text-amber-400 font-semibold">Roastery Catalog →</span>
+            <span>Specialty Coffee</span>
+            <span className="text-amber-400 font-semibold">Brew Guides →</span>
           </div>
         </div>
       );
@@ -272,80 +329,77 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ project, isDetaile
           <div className="flex items-center justify-between border-b border-yellow-800/40 pb-3">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-yellow-500/20 text-yellow-400">
-                <Flower2 className="w-4 h-4" />
+                <Coffee className="w-4 h-4" />
               </div>
-              <span className="font-bold text-xs tracking-wide uppercase text-yellow-300">Lifestyle Café</span>
+              <span className="font-bold text-xs tracking-wide uppercase text-yellow-300">Yellow Flower Coffee</span>
             </div>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-yellow-900/60 text-yellow-300 border border-yellow-700/50">Floral Beans</span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-yellow-900/60 text-yellow-300 border border-yellow-700/50">Pickup Ordering</span>
           </div>
 
           <div className="my-auto space-y-2 py-2">
-            <div className="text-sm font-bold text-neutral-100">Yellow Flower Coffee</div>
+            <div className="text-sm font-bold text-neutral-100">Aesthetic Floral Café</div>
             <p className="text-[11px] text-neutral-300 line-clamp-2">
-              Light roast Ethiopian coffees • Gesha specialty offerings • Botanical cold brews & café bakery.
+              Floral Gesha light roasts • Botanical cold brews & artisanal pastry pairings • Seamless curbside pickup.
             </p>
             <div className="flex gap-1.5 text-[10px] text-yellow-200">
-              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">🌸 Floral Profile</span>
-              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">🥐 Pastry Pairings</span>
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Pastry Pairings</span>
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Light Roasts</span>
             </div>
           </div>
 
           <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
-            <span>Online Pickup Orders</span>
-            <span className="text-yellow-400 font-semibold">Order Café →</span>
+            <span>Urban Café Experience</span>
+            <span className="text-yellow-400 font-semibold">Order Ahead →</span>
           </div>
         </div>
       );
 
     case 'kosykawa':
       return (
-        <div className="w-full h-full bg-gradient-to-br from-orange-950/80 via-neutral-900 to-stone-900 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
+        <div className="w-full h-full bg-gradient-to-br from-orange-950/80 via-neutral-900 to-amber-950/70 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
           <div className="flex items-center justify-between border-b border-orange-800/40 pb-3">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-orange-500/20 text-orange-400">
                 <Coffee className="w-4 h-4" />
               </div>
-              <span className="font-bold text-xs tracking-wide uppercase text-orange-300">Neighborhood Lounge</span>
+              <span className="font-bold text-xs tracking-wide uppercase text-orange-300">Kosy Kawa</span>
             </div>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-orange-900/60 text-orange-300 border border-orange-700/50">Remote-Work Ready</span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-orange-900/60 text-orange-300 border border-orange-700/50">Bakery & Study</span>
           </div>
 
           <div className="my-auto space-y-2 py-2">
-            <div className="text-sm font-bold text-neutral-100">Kosy Kawa Coffee & Bakery</div>
+            <div className="text-sm font-bold text-neutral-100">European Coffee Lounge</div>
             <p className="text-[11px] text-neutral-300 line-clamp-2">
-              Flat whites & Matcha • Fresh croissants & cinnamon buns • Wi-Fi speed & quiet work zone stats.
+              Fresh-baked croissants & sourdough • Live Wi-Fi speed & quiet study nook maps • Community event calendar.
             </p>
-            <div className="grid grid-cols-2 gap-1.5 text-[10px] text-orange-200">
-              <div className="p-1 rounded bg-neutral-900/80 border border-neutral-800">📶 High-Speed Wi-Fi</div>
-              <div className="p-1 rounded bg-neutral-900/80 border border-neutral-800">🥐 Fresh Bake Timetable</div>
+            <div className="flex gap-1.5 text-[10px] text-orange-200">
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Remote Work Nook</span>
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Bake Timetable</span>
             </div>
           </div>
 
           <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
-            <span>Community Events</span>
-            <span className="text-orange-400 font-semibold">Visit Lounge →</span>
+            <span>Neighborhood Lounge</span>
+            <span className="text-orange-400 font-semibold">View Amenities →</span>
           </div>
         </div>
       );
 
     case 'inheritance':
       return (
-        <div className="w-full h-full bg-gradient-to-br from-violet-950/80 via-neutral-900 to-indigo-950/60 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
+        <div className="w-full h-full bg-gradient-to-br from-violet-950/80 via-neutral-900 to-purple-950/70 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
           <div className="flex items-center justify-between border-b border-violet-800/40 pb-3">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-violet-500/20 text-violet-400">
-                <Scale className="w-4 h-4" />
+                <ShieldCheck className="w-4 h-4" />
               </div>
-              <span className="font-bold text-xs tracking-wide uppercase text-violet-300">Farā'iḍ Legal-Tech</span>
+              <span className="font-bold text-xs tracking-wide uppercase text-violet-300">Islamic Farā'iḍ Engine</span>
             </div>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-violet-900/60 text-violet-300 border border-violet-700/50">Calculation Engine</span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-violet-900/60 text-violet-300 border border-violet-700/50">Exact Math</span>
           </div>
 
           <div className="my-auto space-y-2 py-2">
-            <div className="text-sm font-bold text-neutral-100 flex items-center justify-between">
-              <span>Islamic Inheritance Calculator</span>
-              <span className="text-xs font-mono text-violet-300">Mīrāth Engine</span>
-            </div>
+            <div className="text-sm font-bold text-neutral-100">Mīrāth Calculation Algorithm</div>
             <p className="text-[11px] text-neutral-300 line-clamp-2">
               Net estate deductions • Quranic prescribed shares (Furūḍ) • Exclusion logic (Ḥajb) & 'Awl/Radd.
             </p>
@@ -381,8 +435,8 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ project, isDetaile
               Luminous open-air cabanas • Breakfast, Lunch, Grill & Specialty Pour-overs • Private Event Inquiries.
             </p>
             <div className="flex gap-1.5 text-[10px] text-emerald-200">
-              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">🌿 Garden Atmosphere</span>
-              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">☕ Pour-over Bar</span>
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Garden Atmosphere</span>
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Pour-over Bar</span>
             </div>
           </div>
 
@@ -393,10 +447,193 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ project, isDetaile
         </div>
       );
 
+    case 'typemaster':
+      return (
+        <div className="w-full h-full bg-gradient-to-br from-neutral-950 via-slate-950 to-cyan-950/60 p-4 sm:p-5 flex flex-col justify-between text-white relative overflow-hidden select-none font-mono">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-cyan-800/40 pb-2.5">
+            <div className="flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+                <Keyboard className="w-4 h-4" />
+              </div>
+              <span className="font-bold text-xs tracking-wider uppercase text-cyan-300">TypeMaster</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-700/50">
+                Offline IndexedDB
+              </span>
+            </div>
+          </div>
+
+          {/* Typing test HUD */}
+          <div className="my-auto space-y-2.5 py-1">
+            <div className="flex items-center justify-between text-xs">
+              <div className="flex gap-3">
+                <div>
+                  <span className="text-[10px] text-neutral-400 block">WPM</span>
+                  <span className="text-base font-bold text-cyan-400">84.2</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-neutral-400 block">ACCURACY</span>
+                  <span className="text-base font-bold text-emerald-400">98.6%</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-neutral-400 block">TIME</span>
+                  <span className="text-base font-bold text-neutral-200">00:45</span>
+                </div>
+              </div>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-900/40 text-cyan-300 border border-cyan-700/40">
+                Alt + F Focus
+              </span>
+            </div>
+
+            {/* Prompt text simulation */}
+            <div className="p-2.5 rounded-xl bg-neutral-900/90 border border-neutral-800 text-[11px] leading-relaxed">
+              <span className="text-emerald-400 font-bold">function</span>{" "}
+              <span className="text-cyan-300">calculateVelocity</span>
+              <span className="text-neutral-400">(distance, time) &#123;</span>
+              <span className="inline-block w-1.5 h-3.5 bg-cyan-400 ml-1 animate-pulse align-middle" />
+            </div>
+
+            {/* Visual Home-Row anchors */}
+            <div className="grid grid-cols-8 gap-1 text-center text-[9px] font-bold">
+              {['A', 'S', 'D', 'F', 'J', 'K', 'L', ';'].map((key) => (
+                <div key={key} className="py-1 rounded bg-neutral-900 border border-cyan-800/50 text-cyan-300">
+                  {key}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
+            <span>Adaptive Drills • Heatmaps</span>
+            <span className="text-cyan-400 font-semibold">Start Sprint →</span>
+          </div>
+        </div>
+      );
+
+    case 'makecv':
+      return (
+        <div className="w-full h-full bg-gradient-to-br from-neutral-950 via-neutral-900 to-emerald-950/60 p-4 sm:p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-emerald-800/40 pb-2.5">
+            <div className="flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                <FileText className="w-4 h-4" />
+              </div>
+              <span className="font-bold text-xs tracking-wider uppercase text-emerald-300">MakeCV</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700/50">
+                ATS Score 96/100
+              </span>
+            </div>
+          </div>
+
+          {/* Mini A4 preview canvas */}
+          <div className="my-auto py-1 flex items-center gap-3">
+            <div className="w-24 h-28 bg-white text-neutral-900 p-2 rounded shadow-lg border border-neutral-300 flex flex-col justify-between shrink-0">
+              <div>
+                <div className="h-2 w-12 bg-neutral-900 rounded-sm mb-1" />
+                <div className="h-1 w-8 bg-emerald-600 rounded-xs mb-2" />
+                <div className="space-y-1">
+                  <div className="h-1 w-full bg-neutral-300 rounded-xs" />
+                  <div className="h-1 w-16 bg-neutral-300 rounded-xs" />
+                  <div className="h-1 w-14 bg-neutral-300 rounded-xs" />
+                </div>
+              </div>
+              <div className="pt-1 border-t border-neutral-200 flex justify-between items-center text-[7px] text-neutral-500 font-mono">
+                <span>Page 1/1</span>
+                <span className="text-emerald-700 font-bold">A4</span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5 text-xs flex-1">
+              <div className="font-bold text-neutral-100 flex items-center gap-1.5">
+                <span>ATS-Friendly Engine</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-900/60 text-emerald-300 border border-emerald-700/40">6 Templates</span>
+              </div>
+              <p className="text-[11px] text-neutral-300 line-clamp-2">
+                Real-time A4 document canvas • Multi-page PDF export • RTL Arabic & Amharic Ethiopic typography.
+              </p>
+              <div className="flex gap-1 text-[9px] text-emerald-200">
+                <span className="px-1.5 py-0.5 rounded bg-neutral-900 border border-neutral-800">100% Client-Side</span>
+                <span className="px-1.5 py-0.5 rounded bg-neutral-900 border border-neutral-800">JSON Restore</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
+            <span>A4 Document Canvas</span>
+            <span className="text-emerald-400 font-semibold">Generate PDF →</span>
+          </div>
+        </div>
+      );
+
+    case 'jungle-house':
+      return (
+        <div className="w-full h-full bg-gradient-to-br from-emerald-950/90 via-neutral-900 to-green-950/70 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
+          <div className="flex items-center justify-between border-b border-emerald-800/40 pb-3">
+            <div className="flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400">
+                <Trees className="w-4 h-4" />
+              </div>
+              <span className="font-bold text-xs tracking-wide uppercase text-emerald-300">Jungle House</span>
+            </div>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-900/60 text-emerald-300 border border-emerald-700/50">Resort & Lodges</span>
+          </div>
+
+          <div className="my-auto space-y-2 py-2">
+            <div className="text-sm font-bold text-neutral-100">Luxury Eco-Sanctuary & Lodges</div>
+            <p className="text-[11px] text-neutral-300 line-clamp-2">
+              Bespoke forest lodge accommodations • Private celebration pavilion • Wellness retreats & experiential events.
+            </p>
+            <div className="flex gap-1.5 text-[10px] text-emerald-200">
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Private Lodges</span>
+              <span className="px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800">Event Sanctuaries</span>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
+            <span>Availability Check</span>
+            <span className="text-emerald-400 font-semibold">Explore Lodges →</span>
+          </div>
+        </div>
+      );
+
     default:
       return (
-        <div className="w-full h-full bg-neutral-900 p-5 flex items-center justify-center text-neutral-400">
-          <span>Project Showcase</span>
+        <div className="w-full h-full bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 p-5 flex flex-col justify-between text-white relative overflow-hidden select-none">
+          <div className="flex items-center justify-between border-b border-neutral-800/60 pb-3">
+            <div className="flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <span className="font-bold text-xs tracking-wide uppercase text-neutral-200">{project.name}</span>
+            </div>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-300 border border-neutral-700">
+              {project.category}
+            </span>
+          </div>
+
+          <div className="my-auto space-y-2 py-2">
+            <div className="text-sm font-bold text-neutral-100">{project.tagline || project.name}</div>
+            <p className="text-[11px] text-neutral-300 line-clamp-2">
+              {project.shortDescription}
+            </p>
+            <div className="flex flex-wrap gap-1 text-[10px] text-emerald-300">
+              {project.technologies.slice(0, 3).map((tech, i) => (
+                <span key={i} className="px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800/60">
+            <span>Production Deployment</span>
+            <span className="text-emerald-400 font-semibold">View Live →</span>
+          </div>
         </div>
       );
   }
