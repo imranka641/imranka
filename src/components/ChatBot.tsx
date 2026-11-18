@@ -359,7 +359,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ onOpenCV }) => {
             </div>
 
             {/* Messages Scroll Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+            <div data-lenis-prevent className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
               {messages.map((msg) => (
                 <div
                   key={msg.id}

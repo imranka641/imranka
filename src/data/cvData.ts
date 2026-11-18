@@ -42,6 +42,7 @@ export interface CVData {
     telegramUrl: string;
     github: string;
     githubUrl: string;
+    linkedinUrl: string;
     portfolioUrl: string;
     languages: { language: string; proficiency: string }[];
   };
@@ -62,8 +63,8 @@ export interface CVData {
 
 export const CV_DATA: CVData = {
   personalInfo: {
-    fullName: 'Imran Kedir',
-    headline: 'Full-Stack Developer | React • TypeScript • Node.js • PHP • MySQL',
+    fullName: 'Imran Kedir Ahmed',
+    headline: 'Full-Stack Web & Mobile Developer | React • TypeScript • Node.js • PHP • Kotlin',
     email: 'imranka641@gmail.com',
     phone: '+251 913 841 757',
     location: 'Addis Ababa, Ethiopia',
@@ -71,6 +72,7 @@ export const CV_DATA: CVData = {
     telegramUrl: 'https://t.me/imranka641',
     github: 'imranka641',
     githubUrl: 'https://github.com/imranka641',
+    linkedinUrl: 'https://linkedin.com/in/imranka641/',
     portfolioUrl: 'https://ais-dev-jutcjaumzo2rh7povu3jhq-580649611556.europe-west1.run.app',
     languages: [
       { language: 'English', proficiency: 'Professional Working Proficiency' },
@@ -210,11 +212,11 @@ export const CV_DATA: CVData = {
 
   certifications: [
     {
-      name: 'Android Fundamentals',
+      name: 'Android Developer Nanodegree & Fundamentals',
       issuer: 'Udacity',
       year: '2024',
-      description: 'Completed training focused on the fundamentals of Android application development, including Android development concepts, application structure, user interfaces, and mobile development practices.',
-      topics: ['Android Architecture', 'UI/UX Layouts', 'Application Lifecycle', 'Mobile Development Practices']
+      description: 'Completed Udacity Android development training covering Kotlin/Java mobile architecture, UI/UX layouts, application lifecycle, local persistence, and modern mobile engineering practices.',
+      topics: ['Kotlin & Android SDK', 'Android Architecture', 'UI/UX Layouts', 'Application Lifecycle']
     },
     {
       name: 'Programming Fundamentals',

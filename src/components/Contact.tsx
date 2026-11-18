@@ -4,7 +4,8 @@ import {
   Mail, 
   Phone, 
   Send, 
-  Github, 
+  Github,
+  Linkedin,
   Check, 
   Copy, 
   ExternalLink, 
@@ -25,6 +26,7 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import { ProjectEstimator } from './ProjectEstimator';
 import { ConsultationForm } from './ConsultationForm';
+import { ContactCanvas3D } from './ContactCanvas3D';
 
 interface ContactProps {
   selectedProjectType?: string;
@@ -201,16 +203,18 @@ Sent to Imran Kedir (Full-Stack Developer, Addis Ababa)`;
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Interactive 3D Neural Wave Backdrop */}
+      <ContactCanvas3D />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Mail className="w-3.5 h-3.5" />
+          <div className="text-xs font-mono uppercase tracking-[0.2em] text-cyan-400 mb-3">
             {t.contact.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 dark:text-white tracking-tight mb-4 text-balance">
             {t.contact.title}
           </h2>
           <p className="text-neutral-600 dark:text-neutral-300 text-base sm:text-lg leading-relaxed">
@@ -401,26 +405,49 @@ Sent to Imran Kedir (Full-Stack Developer, Addis Ababa)`;
                 </a>
               </div>
 
-              {/* GitHub Card */}
-              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 shadow-sm flex flex-col justify-between">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200">
-                    <Github className="w-5 h-5" />
+              {/* GitHub & LinkedIn Profile Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-5 rounded-2xl bg-white dark:bg-[#080e22]/85 border border-neutral-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:border-cyan-500/40 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2.5 rounded-xl bg-neutral-100 dark:bg-slate-800 text-neutral-800 dark:text-neutral-200">
+                      <Github className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">GitHub</span>
+                      <h4 className="text-sm font-bold text-neutral-900 dark:text-white">@imranka641</h4>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">GitHub Profile</span>
-                    <h4 className="text-sm font-bold text-neutral-900 dark:text-white">github.com/imranka641</h4>
-                  </div>
+                  <a
+                    href="https://github.com/imranka641"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2 px-3 rounded-xl text-xs font-semibold text-center text-neutral-700 dark:text-neutral-200 bg-neutral-100 dark:bg-slate-900 hover:bg-neutral-200 dark:hover:bg-slate-800 border border-neutral-300 dark:border-slate-700 transition-colors flex items-center justify-center gap-1.5"
+                  >
+                    <span>Repositories</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
-                <a
-                  href="https://github.com/imranka641"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2 px-3 rounded-xl text-xs font-semibold text-center text-neutral-700 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800/80 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 transition-colors flex items-center justify-center gap-1.5"
-                >
-                  <span>Explore 10+ Repositories</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+
+                <div className="p-5 rounded-2xl bg-white dark:bg-[#080e22]/85 border border-neutral-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:border-blue-500/40 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-500">
+                      <Linkedin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">LinkedIn</span>
+                      <h4 className="text-sm font-bold text-neutral-900 dark:text-white">imranka641</h4>
+                    </div>
+                  </div>
+                  <a
+                    href="https://linkedin.com/in/imranka641/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2 px-3 rounded-xl text-xs font-semibold text-center text-blue-600 dark:text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 transition-colors flex items-center justify-center gap-1.5"
+                  >
+                    <span>Connect</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
 
             </div>

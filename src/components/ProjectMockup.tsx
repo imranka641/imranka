@@ -34,6 +34,11 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({
   selectedPhotoIndex = 0
 }) => {
   const { previewType } = project;
+  const [imgFailed, setImgFailed] = React.useState(false);
+
+  React.useEffect(() => {
+    setImgFailed(false);
+  }, [project.id, selectedPhotoIndex]);
 
   // Realistic photo view
   if (viewMode === 'photo') {
@@ -44,31 +49,34 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({
     };
 
     return (
-      <div className="w-full h-full relative overflow-hidden bg-neutral-950 group/photo select-none">
-        {/* Realistic Photograph */}
-        <img
-          src={currentPhoto.url}
-          alt={currentPhoto.alt || project.name}
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover group-hover/photo:scale-105 transition-transform duration-700 ease-out"
-          loading="lazy"
-        />
+      <div className="w-full h-full relative overflow-hidden bg-[#050918] group/photo select-none">
+        {!imgFailed ? (
+          <img
+            src={currentPhoto.url}
+            alt={currentPhoto.alt || project.name}
+            referrerPolicy="no-referrer"
+            onError={() => setImgFailed(true)}
+            className="w-full h-full object-cover group-hover/photo:scale-105 transition-transform duration-700 ease-out"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#081230] via-[#050918] to-[#170d2e]">
+            <Layers className="w-8 h-8 text-cyan-400 mb-2" />
+            <div className="text-sm font-display font-bold text-white">{project.name}</div>
+            <div className="text-xs text-slate-400 mt-1 line-clamp-1">{project.tagline}</div>
+          </div>
+        )}
 
         {/* Ambient Dark Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-black/40 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/50 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030612] via-[#030612]/35 to-black/30 pointer-events-none" />
 
-        {/* Top Badges */}
+        {/* Top Bar */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
-          <div className="flex items-center gap-1.5">
-            <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-neutral-950/85 text-emerald-400 border border-emerald-500/30 backdrop-blur-md flex items-center gap-1 shadow-sm">
-              <Camera className="w-3 h-3 text-emerald-400" />
-              <span>Real Photo</span>
-            </span>
+          <div className="flex items-center gap-2 text-[11px] font-mono text-cyan-300 bg-[#030612]/80 px-2.5 py-1 rounded-md border border-cyan-500/25 backdrop-blur-sm">
+            <Camera className="w-3 h-3 text-cyan-400" />
+            <span>Preview</span>
             {project.gallery && project.gallery.length > 1 && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-neutral-950/70 text-neutral-300 border border-neutral-800 backdrop-blur-md">
-                {project.gallery.length} photos
-              </span>
+              <span className="text-slate-400">· {project.gallery.length}</span>
             )}
           </div>
 
@@ -78,7 +86,7 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({
                 e.stopPropagation();
                 onToggleViewMode();
               }}
-              className="pointer-events-auto px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-neutral-900/90 hover:bg-neutral-800 text-neutral-200 border border-neutral-700/80 backdrop-blur-md transition-all flex items-center gap-1 shadow-md hover:text-emerald-400"
+              className="pointer-events-auto px-2.5 py-1 rounded-md text-[10px] font-semibold bg-[#080e22]/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 backdrop-blur-md transition-all flex items-center gap-1 shadow-md hover:text-cyan-400"
               title="Switch to UI Architecture blueprint"
             >
               <Code2 className="w-3 h-3 text-cyan-400" />
@@ -87,24 +95,22 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({
           )}
         </div>
 
-        {/* Bottom Realistic Photo Caption & Stat Pill */}
+        {/* Bottom Caption & Stat */}
         <div className="absolute bottom-3 left-3 right-3 z-10 pointer-events-none">
           <div className="flex items-end justify-between gap-2">
-            <div className="max-w-[80%]">
+            <div className="max-w-[85%]">
               <p className="text-[11px] font-medium text-white/95 line-clamp-1 drop-shadow-md">
                 {currentPhoto.caption || project.tagline}
               </p>
-              <div className="flex items-center gap-2 mt-1">
-                {project.stats?.[0] && (
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-neutral-900/85 text-emerald-300 border border-emerald-500/20 backdrop-blur-sm">
-                    {project.stats[0].label}: <span className="text-white font-semibold">{project.stats[0].value}</span>
-                  </span>
-                )}
-              </div>
+              {project.stats?.[0] && (
+                <div className="mt-1 text-[10px] font-mono text-cyan-300">
+                  {project.stats[0].label}: <span className="text-white font-semibold">{project.stats[0].value}</span>
+                </div>
+              )}
             </div>
 
-            <div className="p-1 rounded-md bg-neutral-950/70 text-neutral-400 border border-neutral-800 backdrop-blur-sm">
-              <ImageIcon className="w-3.5 h-3.5 text-neutral-300" />
+            <div className="p-1 rounded-md bg-[#030612]/75 text-slate-300 border border-slate-800">
+              <ImageIcon className="w-3.5 h-3.5" />
             </div>
           </div>
         </div>

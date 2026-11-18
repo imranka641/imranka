@@ -62,21 +62,23 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     id: 'additional',
-    title: 'Additional Technologies & Mobile',
-    description: 'Multi-paradigm programming, mobile application tooling, and content management systems.',
+    title: 'Mobile & Cross-Platform',
+    description: 'Native and cross-platform mobile application development alongside multi-paradigm engineering.',
     skills: [
-      { name: 'Python', category: 'additional', highlight: true },
-      { name: 'Java', category: 'additional' },
-      { name: 'Kotlin', category: 'additional' },
+      { name: 'React Native', category: 'additional', highlight: true },
+      { name: 'Kotlin', category: 'additional', highlight: true },
+      { name: 'Android Development', category: 'additional', highlight: true },
       { name: 'Android Studio', category: 'additional' },
+      { name: 'Python', category: 'additional' },
+      { name: 'Java', category: 'additional' },
       { name: 'WordPress', category: 'additional' }
     ]
   }
 ];
 
 export const TECHNICAL_HIGHLIGHTS = [
-  { label: 'Featured Projects', value: '9+', description: 'Live web apps & digital platforms' },
-  { label: 'Core Focus', value: 'Full-Stack', description: 'End-to-end architecture & UI' },
+  { label: 'Production Apps', value: '13+', description: 'Live web apps & digital platforms' },
+  { label: 'Core Focus', value: 'Web & Mobile', description: 'End-to-end architecture & UI' },
   { label: 'Industries Served', value: '8+', description: 'Healthcare, Hospitality, Legal & Edu' },
-  { label: 'Code Craftsmanship', value: 'Clean & Scalable', description: 'Modern, typed & modular code' }
+  { label: 'Code Craftsmanship', value: 'Clean & Typed', description: 'Modern, scalable & modular code' }
 ];
